@@ -11,7 +11,10 @@ import {
   TERMINATE
 } from './messages.js';
 
-if (navigator.userAgent.includes("WebKit/") && !navigator.userAgent.includes("Chrome/")) {
+if (
+  navigator.userAgent.includes("WebKit/") && !navigator.userAgent.includes("Chrome/") &&
+  parseFloat(navigator.userAgent.match(/Version\/([\d.]+)/) || [])[1] < 17.4
+) {
   function getWorker(worker) {
     return worker._worker || worker;
   }
